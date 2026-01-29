@@ -9,6 +9,7 @@ html {
     font-family:Verdana, sans-serif;
     background-image: url('/assets/bg3.jpg');
     background-size: cover;
+    object-fit: cover;
     background-repeat: no-repeat;
     background-position: top;
     align-items: center;
@@ -91,6 +92,7 @@ h1 {
     border: 4px solid white;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
 }
 
 .cardFront {
@@ -99,12 +101,20 @@ h1 {
 }
 
 .cardBack{
-   background-image: url('assets/Cats.jpeg');
-    background-size: cover;
+   background-color: #fff;
+    /* Match the height of the card */
+    object-fit: cover; /* This crops the image to fill the space without stretching it */
+    display: block;
     background-position: center;
     transform: rotateY(180deg);
 }
 
+.cardBack img {
+    width: 100%;       /* Force it to match the 120px width */
+    height: 100%;      /* Force it to match the 120px height */
+    object-fit: cover; /* Fill the square without stretching */
+    border-radius: 8px; /* Slightly less than the 12px card border for a clean look */
+}
 
 .cards:hover {
     transform: scale(1.05);

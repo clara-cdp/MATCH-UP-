@@ -6,17 +6,33 @@ if (!gameBoard) {
     console.error("Couldn't find the .gameBoard element! Check your HTML class name.");
 }
 
+let backOfCards = [
+    "assets/card1.jpg",
+    "assets/card2.jpg",
+     "assets/card3.jpg",
+    "assets/card4.jpg",
+     "assets/card5.jpg",
+    "assets/card6.jpg",
+     "assets/card7.jpg",
+    "assets/card8.jpg",
+]
+
+let allGameCards = [...backOfCards, ...backOfCards];
+allGameCards.sort(() => Math.random() - 0.5);
+
 
 for (let i = 0; i < cardCount; i++) {
 
     const card= document.createElement('div');
-
+    const currentImage = allGameCards[i];
+    
     card.classList.add('cards');
 
 card.innerHTML = `
     <div class="cardPosition">
         <div class="cardFront"></div>
-        <div class="cardBack"></div>
+        <div class="cardBack">
+        <img style="object-fit:cover; "src="${currentImage}" alt="card-icon" ></div>
     </div>
 `;
     card.addEventListener('click', function () {
