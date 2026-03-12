@@ -68,7 +68,7 @@ h1 {
     height: 120px;
     perspective: 1000px;
     cursor: pointer;
-    position: relative; /* Add this to anchor the absolute children */
+    position: relative; 
     transition: transform 0.2s;
 }
 
@@ -102,18 +102,17 @@ h1 {
 
 .cardBack{
    background-color: #fff;
-    /* Match the height of the card */
-    object-fit: cover; /* This crops the image to fill the space without stretching it */
-    display: block;
+  
+    object-fit: cover; 
     background-position: center;
     transform: rotateY(180deg);
 }
 
 .cardBack img {
-    width: 100%;       /* Force it to match the 120px width */
-    height: 100%;      /* Force it to match the 120px height */
-    object-fit: cover; /* Fill the square without stretching */
-    border-radius: 8px; /* Slightly less than the 12px card border for a clean look */
+    width: 100%;      
+    height: 100%;      
+    object-fit: cover; 
+    border-radius: 8px; 
 }
 
 .cards:hover {
