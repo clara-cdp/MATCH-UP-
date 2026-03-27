@@ -1,5 +1,10 @@
 let flippedCards = [];
 let matchedCount = 0;
+let score = 0;
+let matchStartTime = 0;
+let timerInterval;
+
+const scoreDisplay = document.getElementById('scoreBox');
 
 
 const gameBoard = document.querySelector('.gameBoard');
@@ -45,6 +50,7 @@ for (let i = 0; i < cardCount; i++) {
         if (!timerRunning) {
             startTimer();
             timerRunning = true;
+            matchStartTime = time;
         }
 
         if (this.classList.contains('flipped') || flippedCards.length === 2) {
@@ -62,7 +68,6 @@ for (let i = 0; i < cardCount; i++) {
 }
 
 
-
 // timer
 
 let time = 0;
@@ -71,7 +76,9 @@ const timerDisplay = document.getElementById('seconds');
 
 function startTimer() {
 
-    setInterval(() => {
+    if (timerInterval) clearInterval(timerInterval);
+
+    timerInterval = setInterval(() => {
         time++;
         timerDisplay.innerText = time;
     }, 1000);
@@ -84,22 +91,53 @@ function checkIfCardsMatch() {
     const [card1, card2] = flippedCards;
 
     let img1 = card1.querySelector('img').src;
-    let img2 = card1.querySelector('img').src;
+    let img2 = card2.querySelector('img').src;
 
     if (img1 === img2) {
         matchedCount += 2;
+
+        let secondsTaken = time - matchStartTime;
+        score += calculatePoints(secondsTaken);
+        scoreDisplay.innerText = score;
+
+        matchStartTime = time;
         flippedCards = [];
 
         if (matchedCount === cardCount) {
-            alert("You WON!")
+            clearInterval(timerInterval);
+            setTimeout(() => alert(`You WON! Final Score: ${score}`), 600);
         }
-
     } else {
+        score = Math.max(0, score - 15);
+        scoreDisplay.innerText = score;
+
         setTimeout(() => {
             card1.classList.remove('flipped');
             card2.classList.remove('flipped');
             flippedCards = [];
 
-        }, 2000);
+        }, 1000);
+    }
+
+}
+
+function calculatePoints(seconds) {
+    switch (true) {
+        case (seconds <= 3):
+            return 200;
+        case (seconds <= 7):
+            return 100;
+        case (seconds <= 11):
+            return 70;
+        case (seconds <= 15):
+            return 50;
+        default:
+            return 25;
     }
 }
+
+
+
+
+
+

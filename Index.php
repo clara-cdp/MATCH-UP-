@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel=stylesheet href='styles.css'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,20 +16,18 @@
     <header>
         <h1>MATCH UP!</h1>
     </header>
-    <div class="timer">
-        <p>TIME: <span id="seconds">00</span></p>
-    </div>
+    <main class="container">
+        <div class="hud">
+            <div class="score">score <span id="scoreBox">0</span></div>
+            <div class="timer">Time <span id="seconds">00</span></div>
+        </div>
 
-    <div class='score'>your score:
-        <input id='scoreBox' type=text-field name='score' , placeholder="00.00"></imput>
-    </div>
+        <div class='gameBoard'>
 
-    <div class=' gameBoard'>
+            <!-- create cards in javaSccript-->
 
-        <!-- create cards in javaSccript-->
-
-    </div>
-
+        </div>
+    </main>
 </body>
 <script src="script.js" defer></script>
 
